@@ -14,5 +14,16 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-     $(LOCAL_DIR)/twrp_m51.mk
+# Inherit from m51 device
+$(call inherit-product, device/samsung/m51/device.mk)
+
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/twrp/config/common.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
+
+## Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := m51
+PRODUCT_NAME := twrp_m51
+PRODUCT_BRAND := Samsung
+PRODUCT_MODEL := Samsung Galaxy A72
+PRODUCT_MANUFACTURER := Samsung

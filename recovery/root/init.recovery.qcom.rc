@@ -1,5 +1,4 @@
-
-# Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+# Copyright (c) 2017-2018,2020 The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,15 +25,20 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import /init.recovery.logd.rc
-
-on early-init
-	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/metadata /metadata ro wait
-	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/persist /mnt/vendor/persist ro wait
-	mount vfat /dev/block/platform/soc/1d84000.ufshc/by-name/apnhlos /vendor/firmware_mnt ro wait
-	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/efs /mnt/vendor/efs ro wait
-	mount ext4 /dev/block/platform/soc/1d84000.ufshc/by-name/sec_efs /efs ro wait
-
 on fs
-    wait /dev/block/platform/soc/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    # Force ANDROID_ROOT to /system_root
+    export ANDROID_ROOT /system_root
+
+    # Symlink bootdevice
+    wait /dev/block/platform/${ro.boot.boot_devices}
+    symlink /dev/block/platform/${ro.boot.boot_devices} /dev/block/bootdevice
+
+on property:sys.usb.ffs.ready=1
+    start mountfix
+
+service mountfix /sbin/sh /system/bin/mount.sh
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0

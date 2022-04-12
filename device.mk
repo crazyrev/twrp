@@ -1,11 +1,11 @@
 #
-# Copyright (C) 2020 The Evolution X Project
+# Copyright 2021 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,27 +14,14 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/samsung/m51
+# Encryption: Use common FBE decryption script
+#BOARD_USES_QCOM_FBE_DECRYPTION := true
 
-# define hardware platform
-PRODUCT_PLATFORM := sm6150
-
-# Define Dynamic Partition support
-PRODUCT_BUILD_SUPER_PARTITION := false
-
-# fastbootd
-PRODUCT_PACKAGES += \
-    android.hardware.fastboot@1.0-impl-mock \
-    fastbootd
-
-# Build qcom FBE decryption
+# Encryption: Setup it
 #PRODUCT_PACKAGES += \
 #    qcom_decrypt \
 #    qcom_decrypt_fbe
 
-# Build tzdata
-PRODUCT_PACKAGES += \
-    tzdata_twrp
-
-# Soong namespaces
-PRODUCT_SOONG_NAMESPACES += $(DEVICE_PATH)
+# Apex
+PRODUCT_HOST_PACKAGES += \
+    libandroidicu

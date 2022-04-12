@@ -1,20 +1,21 @@
-PBRP device tree for the Samsung M51
-=================================================
+# TWRP Tree for Samsung Galaxy A72
 
-| Basic                   | Spec Sheet                                                                                                                     |
-| -----------------------:|:------------------------------------------------------------------------------------------------------------------------------ |
-| CPU                     | Octa-core                                                                   |
-| Chipset                 | Qualcomm SDM730 Snapdragon 730G                                                         |
-| GPU                     | Adreno 618                                                                          |
-| Memory                  | 6/8 GB RAM                                                           |
-| Shipped Android Version | 10.0                                                         |
-| Storage                 | 128 GB                                     |
-| Battery                 | Non-removable Li-Po 7000 mAh battery                        |
-| Display                 | 1080 x 2400 pixels, 20:9 ratio (~393 ppi density)                                    |
-| Camera (Back)(Main)     | 64 MP, f/1.8, 26mm (wide), 1/1.73", 0.8µm, PDAF, 0.8µm, PDAF                              |
-| Camera (Front)          | 32 MP, f/2.0, 26mm (wide), 1/2.8", 0.8µm                                                                                      |
+### How to build
+This was tested and it's fully compatible with [minimal manifest twrp](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp).
+1. Set up the build environment following instructions from [here](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/blob/twrp-11/README.md#getting-started)
+2. Clone device tree:
+```bash
+git clone -b android-11.0 https://github.com/Simon1511/twrp_device_samsung_a72q.git device/samsung/a72q
+```
+3. To build:
+```bash
+export ALLOW_MISSING_DEPENDENCIES=true && . build/envsetup.sh && lunch twrp_a72q-eng && mka recoveryimage
+```
 
-## Device picture
-![M51](https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-m51-1.jpg)
-=================================================
+### Credits
+* DarthJabba9
+* travarilo
+* hendramanu
 
+### Links
+* [Kernel source](https://github.com/Samsung-SM7215/android_kernel_samsung_sm7125)
