@@ -1,21 +1,14 @@
-# TWRP Tree for Samsung Galaxy A72
+# TWRP Tree for Samsung Galaxy M51
 
 ### How to build
 This was tested and it's fully compatible with [minimal manifest twrp](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp).
 1. Set up the build environment following instructions from [here](https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp/blob/twrp-11/README.md#getting-started)
 2. Clone device tree:
 ```bash
-git clone -b android-11.0 https://github.com/Simon1511/twrp_device_samsung_a72q.git device/samsung/a72q
+git clone -b r https://github.com/havocuser19/twrp.git device/samsung/m51
 ```
 3. To build:
 ```bash
-export ALLOW_MISSING_DEPENDENCIES=true && . build/envsetup.sh && lunch twrp_a72q-eng && mka recoveryimage
+export ALLOW_MISSING_DEPENDENCIES=true && . build/envsetup.sh && lunch twrp_m51-eng && mka recoveryimage
 ```
 
-### Credits
-* DarthJabba9
-* travarilo
-* hendramanu
-
-### Links
-* [Kernel source](https://github.com/Samsung-SM7215/android_kernel_samsung_sm7125)
